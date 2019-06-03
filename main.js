@@ -1,6 +1,6 @@
 $(function () {
   class Weather {
-    constructor(city, lat, lon, temp, sky, wind, humidity) {
+    constructor(city, lat, lon, temp, sky, wind, humidity, id) {
       this.city = city;
       this.lat = lat;
       this.lon = lon;
@@ -8,6 +8,7 @@ $(function () {
       this.sky = sky;
       this.wind = wind;
       this.humidity = humidity;
+      this.id = id;
     }
 
     getOurWeather() {
@@ -31,6 +32,7 @@ $(function () {
 
   $(document).ready(function () {
     const items = [];
+    const  localCities = []
     let usd;
     let eur;
     let btc;
@@ -88,19 +90,26 @@ $(function () {
 
 
     function getLocalCities(id) {
-      console.log(localStorage);
-      $('.cards-adds').append('<div class="card card-city-add mt-2" id="' + id + '"><div class="card-body"><h5 class="card-title city">Dnipro</h5><ul class="list-group list-group-flush"><li class="list-group-item"><span><i class="fas fa-thermometer-full"></i></span><span class="temp data-item temp">23.58</span></li><li class="list-group-item"><span><i class="fab fa-skyatlas"></i></span><span class="data-item sky">23.58</span></li><li class="list-group-item"><span><i class="fas fa-wind"></i></span><span class="data-item wind">23.58</span></li><li class="list-group-item"><span><i class="fas fa-tint"></i></span><span class="data-item humidity">23.58</span></li></ul></div><button class="btn btn-danger delete-add-city">Delete</button></div>');
-      console.log(`#${id} .temp`);
-      $(`#${id} h5`).text(localStorage.city)
-      $(`#${id} .temp`).text(this.temp + ' F')
-      $(`#${id} .sky`).text(this.sky)
-      $(`#${id} .wind`).text(this.wind)
-      $(`#${id} .humidity`).text(this.humidity + ' %')
+      console.log(localStorage.city);
+      
+      for (item in JSON.stringify(localStorage.city)) {
+        
+      }
+
+
+
+      // $('.cards-adds').append('<div class="card card-city-add mt-2" id="' + id + '"><div class="card-body"><h5 class="card-title city">Dnipro</h5><ul class="list-group list-group-flush"><li class="list-group-item"><span><i class="fas fa-thermometer-full"></i></span><span class="temp data-item temp">23.58</span></li><li class="list-group-item"><span><i class="fab fa-skyatlas"></i></span><span class="data-item sky">23.58</span></li><li class="list-group-item"><span><i class="fas fa-wind"></i></span><span class="data-item wind">23.58</span></li><li class="list-group-item"><span><i class="fas fa-tint"></i></span><span class="data-item humidity">23.58</span></li></ul></div><button class="btn btn-danger delete-add-city">Delete</button></div>');
+      // console.log(`#${id} .temp`);
+      // $(`#${id} h5`).text(localStorage.city)
+      // $(`#${id} .temp`).text(this.temp + ' F')
+      // $(`#${id} .sky`).text(this.sky)
+      // $(`#${id} .wind`).text(this.wind)
+      // $(`#${id} .humidity`).text(this.humidity + ' %')
       
     }
     
 
-    getLocalCities(localStorage.city)
+    getLocalCities(localStorage.city.id)
 
     $('.delete-my-city').click(function (e) {
       e.preventDefault();
@@ -131,10 +140,16 @@ $(function () {
           th[0][0].value = ''
           function addCityWeather() {
 
-            window['weather_city' + data.id] = new Weather(data.name, '', '', data.main.temp, data.weather[0].description, data.wind.speed, data.main.humidity)
-            window['weather_city' + data.id].getCityWeather(data.id)
 
-            localStorage.setItem('city' + data.id, JSON.stringify(window['weather_city' + data.id]));
+            window['weather_city' + data.id] = new Weather(data.name, '', '', data.main.temp, data.weather[0].description, data.wind.speed, data.main.humidity, data.id);
+            window['weather_city' + data.id].getCityWeather(data.id);
+
+
+            localCities.push(JSON.stringify(window['weather_city' + data.id]))
+            console.log(localCities);
+            
+
+            localStorage.setItem('city', localCities);
             console.log(localStorage);
 
 
