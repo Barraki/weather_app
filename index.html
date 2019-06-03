@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weather</title>
+  <link rel="stylesheet" href="fontawesome-free-5.8.2-web/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="center">Weather App</h1>
+        </div>
+        <div class="col-9">
+          <form id="search">
+            <div class="input-group mb-3">
+              <input type="text" id="search-city" name="search" class="form-control" placeholder="Enter The city"
+                aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <div class="input-group-prepend">
+                <button class="btn btn-primary" id="search-btn" type="submit" id="button-addon1">Add</button>
+              </div>
+          </form>
+        </div>
+        <div class="card card-my-city d-none" id="my-city">
+          <div class="card-body">
+            <h5 class="card-title city">Dnipro</h5>
+            <hr>
+            <div class="weather-row">
+
+              <div class="weather-column col-3">
+                <span><i class="fas fa-thermometer-full"></i></span>
+                <span class="temp data-item temp">23.58</span>
+              </div>
+              <div class="weather-column col-3">
+                <span><i class="fab fa-skyatlas"></i></span>
+                <span class="data-item sky">23.58</span>
+              </div>
+              <div class="weather-column col-3">
+                <span><i class="fas fa-wind"></i></span>
+                <span class="data-item wind">23.58</span>
+              </div>
+              <div class="weather-column col-3">
+                <span><i class="fas fa-tint"></i></span>
+                <span class="data-item humidity">23.58</span>
+              </div>
+            </div>
+            <p class="card-text update"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+          <button class="btn btn-danger delete-my-city">Delete</button>
+        </div>
+        <div class="cards-adds">
+       
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card" style="width: 100%;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="usd">USD <span>
+                <div class="spinner-border text-primary" role="status">
+                </div>
+              </span></li>
+            <li class="list-group-item" id="eur">EUR <span>
+                <div class="spinner-border text-primary" role="status">
+                </div>
+            </li>
+            <li class="list-group-item" id="btc">BTC <span>
+                <div class="spinner-border text-primary" role="status">
+                </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

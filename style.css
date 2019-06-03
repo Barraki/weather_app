@@ -1,0 +1,107 @@
+main {
+  height: 100%;
+  display: block;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: rgb(242, 88, 145);
+  background: linear-gradient(350deg, rgba(242, 88, 145, 1) 0%, rgba(248, 128, 102, 1) 100%);
+}
+
+body, main {
+  min-height: 100vh;
+  display: block;
+}
+
+.input-group {
+  background-color: #fff;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  border-color: rgba(223, 225, 229, 0);
+  padding: 10px;
+  border-radius: 5px
+}
+
+.card {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  border-color: rgba(223, 225, 229, 0);
+}
+
+.weather-row {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.spinner-border {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.weather-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.card-title {
+  font-size: 25px;
+}
+
+.weather-column i {
+  font-size: 80px;
+  margin-bottom: 20px;
+  color: #f5796d;
+}
+
+.data-item {
+  font-size: 18px;
+  text-align: center;
+}
+
+.input-group .btn {
+  color: #fff
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.center {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.card-city-add .list-group-item:first-child {
+  border-top: none 
+}
+
+.card-city-add .list-group-item {
+  padding: .75rem 0.25rem
+}
+
+.card-my-city .btn.btn-danger {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+.cards-adds {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.cards-adds .card {
+  min-width: 220px !important;
+  display: flex;
+  width: 32.5%;
+}
+
+.cards-adds .card:nth-child(3n - 1) {
+  margin: 0 10px
+}
