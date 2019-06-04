@@ -32,7 +32,7 @@ $(function () {
 
   $(document).ready(function () {
     const items = [];
-    const  localCities = []
+    const localCities = []
     let usd;
     let eur;
     let btc;
@@ -65,6 +65,8 @@ $(function () {
 
     }
 
+
+
     function getWeather() {
 
       let weather;
@@ -89,27 +91,51 @@ $(function () {
     }
 
 
-    function getLocalCities(id) {
-      console.log(localStorage.city);
-      
-      for (item in JSON.stringify(localStorage.city)) {
-        
+    function getLocalCities() {
+      for (let i = 0; i < localStorage.length; i++) {
+
+        let key = localStorage.key(i);
+        let value = JSON.parse(localStorage.getItem(key));
+        console.log(value);
+
+
+        $('.cards-adds').append('<div class="card card-city-add mt-2" id="' + value.id + '"><div class="card-body"><h5 class="card-title city">Dnipro</h5><ul class="list-group list-group-flush"><li class="list-group-item"><span><i class="fas fa-thermometer-full"></i></span><span class="temp data-item temp">23.58</span></li><li class="list-group-item"><span><i class="fab fa-skyatlas"></i></span><span class="data-item sky">23.58</span></li><li class="list-group-item"><span><i class="fas fa-wind"></i></span><span class="data-item wind">23.58</span></li><li class="list-group-item"><span><i class="fas fa-tint"></i></span><span class="data-item humidity">23.58</span></li></ul></div><button class="btn btn-danger delete-add-city">Delete</button></div>');
+        $(`#${value.id} h5`).text(value.city)
+        $(`#${value.id} .temp`).text(value.temp + ' F')
+        $(`#${value.id} .sky`).text(value.sky)
+        $(`#${value.id} .wind`).text(value.wind)
+        $(`#${value.id} .humidity`).text(value.humidity + ' %')
       }
 
 
 
-      // $('.cards-adds').append('<div class="card card-city-add mt-2" id="' + id + '"><div class="card-body"><h5 class="card-title city">Dnipro</h5><ul class="list-group list-group-flush"><li class="list-group-item"><span><i class="fas fa-thermometer-full"></i></span><span class="temp data-item temp">23.58</span></li><li class="list-group-item"><span><i class="fab fa-skyatlas"></i></span><span class="data-item sky">23.58</span></li><li class="list-group-item"><span><i class="fas fa-wind"></i></span><span class="data-item wind">23.58</span></li><li class="list-group-item"><span><i class="fas fa-tint"></i></span><span class="data-item humidity">23.58</span></li></ul></div><button class="btn btn-danger delete-add-city">Delete</button></div>');
-      // console.log(`#${id} .temp`);
-      // $(`#${id} h5`).text(localStorage.city)
-      // $(`#${id} .temp`).text(this.temp + ' F')
-      // $(`#${id} .sky`).text(this.sky)
-      // $(`#${id} .wind`).text(this.wind)
-      // $(`#${id} .humidity`).text(this.humidity + ' %')
-      
     }
-    
 
-    getLocalCities(localStorage.city.id)
+
+    getLocalCities()
+    function web_storage() {
+      try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function deleteLocalCities() {
+      $('.delete-add-city').click(function (e) {
+        e.preventDefault();
+        $(e.target.offsetParent).fadeOut(400);
+        setTimeout(() => {
+          $(e.target.offsetParent).remove();
+        }, 300);
+        console.log(e.target.parentElement.id);
+
+        localStorage.removeItem('city' + e.target.parentElement.id)
+
+      })
+    }
+    deleteLocalCities()
+
 
     $('.delete-my-city').click(function (e) {
       e.preventDefault();
@@ -145,12 +171,14 @@ $(function () {
             window['weather_city' + data.id].getCityWeather(data.id);
 
 
-            localCities.push(JSON.stringify(window['weather_city' + data.id]))
-            console.log(localCities);
-            
 
-            localStorage.setItem('city', localCities);
-            console.log(localStorage);
+            if (web_storage()) {
+              localStorage.setItem('city' + data.id, JSON.stringify(window['weather_city' + data.id]));
+            } else {
+              alert('Поставь нормальный браузер, упырь')
+            }
+
+
 
 
           }
@@ -168,4 +196,5 @@ $(function () {
     }
 
   })
+ 
 })
